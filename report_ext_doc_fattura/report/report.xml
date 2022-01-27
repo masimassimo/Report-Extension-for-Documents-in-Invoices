@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        
+        <template id="report_ext_doc_fattura" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@id='qrcode'][1]" position="after">
+                <t t-if="o.related_documents">
+                    <h2>Riferimenti</h2>
+                    <table class="table table-sm o_main_table" name="documents_line_table">
+                        <thead>
+                            <tr>
+                                <th name="th_documento" class="text-left"><span>Tipo documento</span></th>
+                                <th name="th_iddocumento" class="text-left"><span>ID documento</span></th>
+                                <th name="th_rifriga" t-attf-class="text-left"><span>Rif. riga</span></th>
+                                <th name="th_datadocumento" t-attf-class="text-left"><span>Data</span></th>
+                                <th name="th_numelemento" t-attf-class="text-left"><span>N. elemento</span></th>
+                                <th name="th_codicecommessa" t-attf-class="text-left"><span>Codice commessa convenzione</span></th>
+                                <th name="th_codicecig" t-attf-class="text-left"><span>Codice CIG</span></th>
+                                <th name="th_codicecup" t-attf-class="text-left"><span>Codice CUP</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="documents_tbody">
+                            <t t-set="dlines" t-value="o.related_documents"/>
+
+                            <t t-foreach="dlines" t-as="dline">
+                                <tr>
+                                    <td name="document_type"><span t-field="dline.type"/></td>
+                                    <td class="text-left"><span t-field="dline.name"/></td>
+                                    <td class="text-left"><span t-field="dline.lineRef"/></td>
+                                    <td class="text-left"><span t-field="dline.date"/></td>
+                                    <td class="text-left"><span t-field="dline.numitem"/></td>
+                                    <td class="text-left"><span t-field="dline.code"/></td>
+                                    <td class="text-left"><span t-field="dline.cig"/></td>
+                                    <td class="text-left"><span t-field="dline.cup"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+            </xpath>
+        </template>
+     </data>
+</odoo>
